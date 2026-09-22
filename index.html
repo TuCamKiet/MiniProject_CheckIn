@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in App</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Check-in Tracker</h1>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <div class="form-group">
+                    <label>1. Provide Image</label>
+                    <div class="image-controls" style="display: flex; gap: 10px;">
+                        <input type="file" id="imageUpload" accept="image/*" capture="environment" style="display: none;">
+                        <button id="btnUploadClick" style="flex: 1; background-color: #2196F3;">📁 Upload File</button>
+                        <button id="btnOpenCamera" style="flex: 1; background-color: #FF9800;">📸 Take Photo</button>
+                    </div>
+
+                    <div id="cameraContainer" style="display: none; margin-top: 10px;">
+                        <video id="cameraStream" autoplay playsinline style="width: 100%; max-height: 400px; background: #000; border-radius: 8px;"></video>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button id="btnCapture" style="flex: 1; background-color: #4CAF50;">Capture</button>
+                            <button id="btnCancelCamera" style="flex: 1; background-color: #f44336;">Cancel</button>
+                        </div>
+                    </div>
+                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>2. Select Location</label>
+                    <div class="location-controls">
+                        <button id="btnCurrentLocation">Use Current Location</button>
+                        <div class="search-box">
+                            <input type="text" id="locationSearch" placeholder="Search location...">
+                            <button id="btnSearch">Search</button>
+                        </div>
+                    </div>
+                    <div id="map" style="height: 300px; width: 100%; margin-top: 10px; border-radius: 8px; z-index: 1;"></div>
+                    <div class="coordinates">
+                        <span>Lat: <span id="latDisplay">-</span></span>
+                        <span>Lng: <span id="lngDisplay">-</span></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="noteInput">3. Add Note (optional)</label>
+                    <input type="text" id="noteInput" placeholder="What are you doing here?">
+                </div>
+
+                <button id="btnSave" class="btn-primary">Save Check-in</button>
+            </section>
+
+            <section class="list-section">
+                <h2>My Check-ins</h2>
+                <div id="checkinList" class="checkin-list">
+                    <!-- Check-in items will go here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
